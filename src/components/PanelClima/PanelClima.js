@@ -23,7 +23,8 @@ export default function PanelClima () {
     getClima(loc)
       .then(dataClima => {
         setClima(dataClima);      
-        setCargando(false)        
+        setCargando(false)  
+        setError(false)      
       })
       .catch(error => {
         setCargando(false);
@@ -33,7 +34,7 @@ export default function PanelClima () {
     getPrediccion(loc)
       .then(dataPrediccion => {
         setPrediccion(dataPrediccion);
-        console.log(dataPrediccion)
+        setError(false)
       })
       .catch(error => {
         setCargando(false);
