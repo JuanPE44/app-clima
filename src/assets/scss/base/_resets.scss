@@ -1,0 +1,25 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a:link, a:visited, a:active {
+  text-decoration:none;
+}
+
+ul {
+  list-style: none;
+}
+
+button {
+  border: none;
+  background: none;
+  font-family: var(--font-poppins);
+}
+
+input {
+  border: none;
+  outline: none;
+}
