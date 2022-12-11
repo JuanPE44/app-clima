@@ -2,7 +2,7 @@
 import './Spinner.scss';
 
 export default function Spinner () {
-  return (
+  return (  
     <span className="loader"></span>
   )
 }

@@ -1,11 +1,12 @@
 
 import './PanelClima.scss';
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import getClima from "../../services/getClima";
 import getPrediccion from "../../services/getPrediccion";
 import Form from '../Form/Form';
-import Spinner from '../Spinner/Spinner';
 import CardClima from '../CardClima/CardClima'
+import CardPredriccion from '../CardPrediccion/CardPrediccion';
+
 
 export default function PanelClima () {
 
@@ -13,51 +14,53 @@ export default function PanelClima () {
   const [prediccion, setPrediccion] = useState([]);
   const [cargando, setCargando] = useState(false);
   const [mostrar, setMostrar] = useState(false);
+  const [error, setError] = useState(false);
   const [localizacion, setLocalizacion] = useState('');
 
   const getInfo = async (loc) => {
     setCargando(true);
+    setMostrar(true)
     getClima(loc)
       .then(dataClima => {
-        setClima(dataClima);
-        console.log(dataClima)
-        setCargando(false)
-        setMostrar(true)
+        setClima(dataClima);      
+        setCargando(false)        
       })
       .catch(error => {
         setCargando(false);
-        setMostrar(false);
-        console.log(error)
+        setError(true)
       });
 
     getPrediccion(loc)
       .then(dataPrediccion => {
         setPrediccion(dataPrediccion);
+        console.log(dataPrediccion)
       })
       .catch(error => {
         setCargando(false);
-        setMostrar(false);
-        console.log(error)
+        setError(true)
       });
   }
 
-  
+  useEffect(()=>{
+    
+  }, [])
+
   return(
     <div className="panel-clima">
       <Form 
         newLocalizacion = {getInfo}
-      />
-      
-      {
-      cargando ? <Spinner /> :
+      />      
+      {           
       mostrar 
-        ? <CardClima 
-          temperatura={clima.main.temp}
-          viento={clima.wind.speed}
-          humedad={clima.main.humidity}
-          img={clima.weather[0].main}
-          descImg={clima.weather[0].description}
+        ? 
+        <React.Fragment>
+          <CardClima 
+            clima={clima}
+            cargando={cargando}
+            error={error}
           /> 
+          <CardPredriccion />
+        </React.Fragment>
         : ''
       }
     </div>

@@ -1,27 +1,38 @@
-.loader {
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background-color: #fff;
-  box-shadow: 32px 0 #fff, -32px 0 #fff;
-  position: relative;
-  margin-top: 3rem;
-  transform: scale(.8);
-  animation: flash 0.5s ease-out infinite alternate;
+
+
+
+  .loader {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: var(--azul);
+    box-shadow: 32px 0 var(--azul), -32px 0 var(--azul);
+    position: relative;
+    transform: scale(.8);
+    animation: flash 0.5s ease-out infinite alternate;
+  }
+
+
+@keyframes fadeIn {
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
+
 
 @keyframes flash {
   0% {
     background-color: #FFF2;
-    box-shadow: 32px 0 #FFF2, -32px 0 #FFF;
+    box-shadow: 32px 0 #FFF2, -32px 0 var(--azul);
   }
   50% {
-    background-color: #FFF;
+    background-color: var(--azul);
     box-shadow: 32px 0 #FFF2, -32px 0 #FFF2;
   }
   100% {
     background-color: #FFF2;
-    box-shadow: 32px 0 #FFF, -32px 0 #FFF2;
+    box-shadow: 32px 0 var(--azul), -32px 0 #FFF2;
   }
 }
   
