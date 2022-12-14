@@ -1,6 +1,6 @@
 
 import './PanelClima.scss';
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import getClima from "../../services/getClima";
 import getPrediccion from "../../services/getPrediccion";
 import Form from '../Form/Form';
@@ -12,39 +12,38 @@ export default function PanelClima () {
 
   const [clima, setClima] = useState([]);
   const [prediccion, setPrediccion] = useState([]);
-  const [cargando, setCargando] = useState(false);
+  const [cargaClima, setCargaClima] = useState(false);
+  const [cargaPrediccion, setCargaPrediccion] = useState(false);
   const [mostrar, setMostrar] = useState(false);
   const [error, setError] = useState(false);
-  const [localizacion, setLocalizacion] = useState('');
 
   const getInfo = async (loc) => {
-    setCargando(true);
+    setCargaClima(true);
+    setCargaPrediccion(true);    
     setMostrar(true)
     getClima(loc)
       .then(dataClima => {
         setClima(dataClima);      
-        setCargando(false)  
-        setError(false)      
+        setCargaClima(false)  
+        setError(false)            
       })
       .catch(error => {
-        setCargando(false);
+        setCargaClima(false);
         setError(true)
       });
 
     getPrediccion(loc)
       .then(dataPrediccion => {
+        setCargaPrediccion(false)
         setPrediccion(dataPrediccion);
         setError(false)
+        console.log(dataPrediccion)  
       })
       .catch(error => {
-        setCargando(false);
+        cargaPrediccion(false);
         setError(true)
       });
   }
-
-  useEffect(()=>{
-    
-  }, [])
 
   return(
     <div className="panel-clima">
@@ -52,17 +51,20 @@ export default function PanelClima () {
         newLocalizacion = {getInfo}
       />      
       {           
-      mostrar 
-        ? 
-        <React.Fragment>
-          <CardClima 
-            clima={clima}
-            cargando={cargando}
-            error={error}
-          /> 
-          <CardPredriccion />
-        </React.Fragment>
-        : ''
+      mostrar ? (
+          <>
+            <CardClima 
+              clima={clima}
+              cargando={cargaClima}
+              error={error}
+            />            
+            <CardPredriccion
+              prediccion={prediccion}
+              cargando={cargaPrediccion}
+              error={error}
+            />
+          </>
+      ) : ''
       }
     </div>
   )

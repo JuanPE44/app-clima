@@ -1,13 +1,22 @@
 
 .form {
+  grid-area: f;
+  min-width: 350px;
+  width: 100%;
   display: flex;
   align-items: center;
   background: var(--blanco);
   padding: 2rem 2.5rem;
-  border-radius: var(--border-radius);
   gap: .9rem;
 
+  .form-icono {
+    flex-grow: 0;
+    font-size: 2rem;
+    color: var(--azul);
+  }
+
   .form-input {
+    flex-grow: 9;
     padding: 1rem 0;
     background: var(--blanco);
     font-size: 1.5rem;
@@ -19,12 +28,8 @@
     }
   }
 
-  .form-icono {
-    font-size: 2rem;
-    color: var(--azul);
-  }
-
   .form-boton {
+    flex-grow: 0;
     cursor: pointer;
     border-radius: 50%;
     padding: .8rem;

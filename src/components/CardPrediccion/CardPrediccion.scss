@@ -1,0 +1,62 @@
+
+.card-prediccion {  
+  grid-area: p;
+  height: 100%;
+  width: 0;  
+  display: flex;
+  justify-content: center;
+  align-items:center;
+  background: var(--blanco);
+  padding: 1rem;
+  animation: .1s prediccionFadeIn forwards; 
+
+
+  .contenedor-predicciones {
+    max-height: 400px;
+    display: flex;  
+    flex-wrap: wrap;
+    justify-content: center;
+    overflow: hidden;
+    overflow-y: scroll;
+    margin: 1rem;   
+    transform: scale(0);
+    opacity: 0;
+    animation: 1s fadeIn forwards;   
+
+    /* Elemento base */
+    &::-webkit-scrollbar {
+      width: 10px;
+      
+    }
+
+    /* Carril */
+    &::-webkit-scrollbar-track {
+      background: var(--blanco);
+      border-radius: var(--border-radius);
+    }
+    /* Manejador */
+    &::-webkit-scrollbar-thumb {
+      background: var(--azul);
+      border-radius: 50px;
+    }
+
+    /* Manejador hover */
+    &::-webkit-scrollbar-thumb:hover {
+      background: #8f51d1;
+    }
+  }
+}
+
+@keyframes prediccionFadeIn {
+  to {
+    width: 200px;  
+  }
+}
+
+@keyframes fadeIn {
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
