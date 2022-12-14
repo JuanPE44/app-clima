@@ -1,9 +1,10 @@
 
-.panel-clima {
-  display: flex;
-  flex-direction: column;
+.panel-clima { 
+  display: grid;
+  flex-wrap: wrap;
   align-items: center;
   overflow: hidden;
   border-radius: var(--border-radius);
-  transform: scale(1.1);
+  grid-template-areas:  "f p"
+                        "c p";  
 }
