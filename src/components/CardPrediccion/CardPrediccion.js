@@ -6,7 +6,7 @@ import Prediccion from '../Prediccion/Prediccion';
 import { useEffect, useState } from 'react';
 
 const DIAS = ['Domingo','Lunes','Martes','Miercoles','Jueves','Viernes','Sabado'];
-
+let nada;
 export default function CardPredriccion ({ prediccion, cargando, error }) { 
   const [dias, setDias] = useState([]);
 
