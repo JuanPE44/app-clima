@@ -1,27 +1,26 @@
 
 .card-prediccion {  
   grid-area: p;
-  height: 100%;
-  width: 0;  
+  width: 100%; 
   display: flex;
   justify-content: center;
   align-items:center;
   background: var(--blanco);
   padding: 1rem;
-  animation: .1s prediccionFadeIn forwards; 
+  min-height: 200px;
+  max-width: var(--panel-largo);
 
 
   .contenedor-predicciones {
-    max-height: 400px;
     display: flex;  
-    flex-wrap: wrap;
-    justify-content: center;
+    justify-content: flex-start;
     overflow: hidden;
-    overflow-y: scroll;
+    overflow-x: scroll;
     margin: 1rem;   
     transform: scale(0);
     opacity: 0;
     animation: 1s fadeIn forwards;   
+    padding-bottom: 2rem;
 
     /* Elemento base */
     &::-webkit-scrollbar {
@@ -33,6 +32,7 @@
     &::-webkit-scrollbar-track {
       background: var(--blanco);
       border-radius: var(--border-radius);
+      margin: 1rem;
     }
     /* Manejador */
     &::-webkit-scrollbar-thumb {
@@ -47,11 +47,7 @@
   }
 }
 
-@keyframes prediccionFadeIn {
-  to {
-    width: 200px;  
-  }
-}
+
 
 @keyframes fadeIn {
   to {

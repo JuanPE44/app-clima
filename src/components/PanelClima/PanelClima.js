@@ -6,6 +6,7 @@ import getPrediccion from "../../services/getPrediccion";
 import Form from '../Form/Form';
 import CardClima from '../CardClima/CardClima'
 import CardPredriccion from '../CardPrediccion/CardPrediccion';
+import {useLocation} from 'wouter';
 
 
 export default function PanelClima () {
@@ -16,8 +17,10 @@ export default function PanelClima () {
   const [cargaPrediccion, setCargaPrediccion] = useState(false);
   const [mostrar, setMostrar] = useState(false);
   const [error, setError] = useState(false);
+  const [path, pushLocation] = useLocation();
 
   const getInfo = async (loc) => {
+    pushLocation(`/${loc}`)
     setCargaClima(true);
     setCargaPrediccion(true);    
     setMostrar(true)

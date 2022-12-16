@@ -5,6 +5,7 @@
   align-items: center;
   overflow: hidden;
   border-radius: var(--border-radius);
-  grid-template-areas:  "f p"
-                        "c p";  
+  grid-template-areas:  "f"
+                        "c"
+                        "p";  
 }
