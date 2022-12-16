@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 
 const DIAS = ['Domingo','Lunes','Martes','Miercoles','Jueves','Viernes','Sabado'];
 
-export default function CardPredriccion ({ prediccion, cargando, error }) {
+export default function CardPredriccion ({ prediccion, cargando, error }) { 
   const [dias, setDias] = useState([]);
 
   const separarDias = (arrayDias) => {
