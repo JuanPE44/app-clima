@@ -2,7 +2,7 @@
 
 .card-clima {
   grid-area: c;
-  width: var(--panel-largo-predeterminado);
+  width: 100%;
   height: 0px; 
   display: flex;  
   flex-direction: column;
@@ -107,6 +107,5 @@
 @keyframes climaFadeIn {
   to {
     height: 350px;  
-    width: var(--panel-largo) ;
   }
 }

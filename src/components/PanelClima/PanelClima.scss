@@ -1,11 +1,18 @@
 
 .panel-clima { 
-  display: grid;
+  max-width: var(--panel-largo);
+  display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
   align-items: center;
   overflow: hidden;
+  background: var(--blanco);
   border-radius: var(--border-radius);
-  grid-template-areas:  "f"
-                        "c"
-                        "p";  
+}
+
+@media (max-width: 450px) {
+  .panel-clima {
+    transform: scale(.8);
+    width: 100%;
+  }
 }
