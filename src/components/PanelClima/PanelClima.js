@@ -1,73 +1,96 @@
 
 import './PanelClima.scss';
 import React, { useState } from "react";
-import getClima from "../../services/getClima";
 import getPrediccion from "../../services/getPrediccion";
+import Spinner from '../Spinner/Spinner';
 import Form from '../Form/Form';
 import CardClima from '../CardClima/CardClima'
 import CardPredriccion from '../CardPrediccion/CardPrediccion';
 import {useLocation} from 'wouter';
+import CardHoras from '../CardHoras/CardHoras';
 
+const DIAS = ['Domingo','Lunes','Martes','Miercoles','Jueves','Viernes','Sabado'];
 
 export default function PanelClima () {
 
   const [clima, setClima] = useState([]);
   const [prediccion, setPrediccion] = useState([]);
-  const [cargaClima, setCargaClima] = useState(false);
-  const [cargaPrediccion, setCargaPrediccion] = useState(false);
   const [mostrar, setMostrar] = useState(false);
   const [error, setError] = useState(false);
   const [path, pushLocation] = useLocation();
+  const [cargando, setCargando] = useState([])
+
+  const separarDias = (arrayDias) => {
+    let diasSeparados = [];
+    let horas = [];
+    let indexDia;
+    arrayDias.forEach((d, index) => {
+      let date = new Date(d.dt_txt);
+      if(index === 0) {indexDia = date.getDay(date)}
+      if(indexDia !== date.getDay(date)) {
+        diasSeparados.push({dia: DIAS[indexDia], horas})
+        indexDia = date.getDay(date);
+        horas = [];
+      }
+      horas.push(d);
+      if(index === 39) {diasSeparados.push({dia: DIAS[indexDia], horas})}
+    })
+    return diasSeparados;
+  }
 
   const getInfo = async (loc) => {
     pushLocation(`/${loc}`)
-    setCargaClima(true);
-    setCargaPrediccion(true);    
-    setMostrar(true)
-    getClima(loc)
-      .then(dataClima => {
-        setClima(dataClima);      
-        setCargaClima(false)  
-        setError(false)            
-      })
-      .catch(error => {
-        setCargaClima(false);
-        setError(true)
-      });
+    console.log(path)
+    setCargando(true);  
+    setMostrar(true)   
 
     getPrediccion(loc)
       .then(dataPrediccion => {
-        setCargaPrediccion(false)
-        setPrediccion(dataPrediccion);
-        setError(false)
-        console.log(dataPrediccion)  
+        setCargando(false)        
+        setPrediccion(separarDias(dataPrediccion.list))            
+        setClima(separarDias(dataPrediccion.list)[0]);
+        setError(false)        
       })
       .catch(error => {
-        cargaPrediccion(false);
+        setCargando(false);
         setError(true)
       });
   }
+
+  const cambiardia = (dia) => {
+    setClima(dia)
+  }
+
 
   return(
     <div className="panel-clima">
       <Form 
         newLocalizacion = {getInfo}
-      />      
-      {           
-      mostrar ? (
+      />
+      {                 
+      mostrar ?        
+        cargando ? <Spinner /> :  (
           <>
+            <CardHoras 
+              diaHoras={clima.horas}
+            />
             <CardClima 
-              clima={clima}
-              cargando={cargaClima}
               error={error}
+              dia={clima.dia}
+              img={clima.horas[0].weather[0].main}
+              temp={clima.horas[0].main.temp}
+              imgDescripcion={clima.horas[0].weather[0].description}
+              humedad={clima.horas[0].main.humidity}
+              viento={clima.horas[0].wind.speed}
             />            
             <CardPredriccion
+              cambiarDia={cambiardia}
               prediccion={prediccion}
-              cargando={cargaPrediccion}
               error={error}
-            />
-          </>
-      ) : ''
+            />   
+          </>                              
+        )  
+      : ''
       }
     </div>
   )

@@ -8,13 +8,21 @@
   justify-content: space-evenly;  
   align-items: center;
   border-radius: var(--border-radius);
-  margin: 1rem;
+  margin: .5rem;
   padding-bottom: 1rem;
-  background: #1952771a;
+  // background: #1952771a;
   opacity: 0;
   transform: scale(0);
   animation: 1s fadeIn forwards; 
   color: var(--azul);
+  border: 1px solid #1951771c;
+  transition: .2s;
+  cursor: pointer;
+
+  &:hover {
+    background: #195177;
+    color: var(--blanco);
+  }
 
   .header-prediccion {
     display: flex;
@@ -32,7 +40,7 @@
 
     .prediccion-dia {
       font-size: 1.8rem;
-      color: var(--gris-claro);
+      //color: var(--gris-claro);
       font-weight: bold;
     }
   }
@@ -55,7 +63,7 @@
 
     .tempMax {
       position: relative;
-      color: var(--gris-claro);
+      //color: var(--gris-claro);
       &::before {
         content: 'º';
         position: absolute;
