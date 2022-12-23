@@ -1,13 +1,32 @@
 
 
 .hora {
-  min-width: 200px;
   width: 100%;
   display: flex;
   justify-content: space-around;
   align-items: center;
   padding: 1rem 2rem;
   margin: .2rem;
+  color: var(--azul);
+  box-shadow: 0 0 40px #1951770c;
+  border-radius: var(--border-radius);
+  .divHora {
+
+  }
+
+  .hora-temp {
+    position: relative;
+    font-weight: bold;
+
+    &::before {
+      content: '°C';
+      position: absolute;
+      top: -5px;
+      right: -10px;
+      font-size: .9rem;
+      font-weight: 700;
+    }
+  }
 
   img {
     width: 3rem;

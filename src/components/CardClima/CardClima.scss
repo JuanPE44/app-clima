@@ -1,14 +1,12 @@
-
-
 .card-clima {
   grid-area: c;
   width: 100%;
-  display: flex;  
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 1rem;
-  background: var(--blanco); 
+  background: var(--blanco);
   overflow: hidden;
 
   .main-clima {
@@ -18,8 +16,8 @@
     margin-bottom: 2rem;
     color: var(--azul);
     transform: scale(0);
-    opacity: 0;  
-    animation: .8s fadeIn forwards;  
+    opacity: 0;
+    animation: 0.8s fadeIn forwards;
 
     .clima-dia {
       margin: 1rem;
@@ -27,7 +25,7 @@
       font-weight: 500;
       text-transform: capitalize;
     }
-    
+
     .clima-img {
       width: 150px;
       height: 150px;
@@ -38,17 +36,17 @@
       position: relative;
       margin-top: 2rem;
       font-size: 4rem;
-      font-weight: 700;    
-  
+      font-weight: 700;
+
       &::before {
-        content: '°C';
+        content: "°C";
         position: absolute;
         top: 2px;
         right: -10px;
         font-size: 1.2rem;
         font-weight: 700;
       }
-    } 
+    }
 
     .clima-descripcion {
       font-size: 1.6rem;
@@ -64,8 +62,8 @@
     margin-top: 3rem;
     color: var(--azul);
     transform: scale(0);
-    opacity: 0;  
-    animation: .8s fadeIn forwards;  
+    opacity: 0;
+    animation: 0.8s fadeIn forwards;
 
     .clima-humedad {
       display: flex;
@@ -82,7 +80,6 @@
         display: flex;
         flex-direction: column;
         font-size: 1.2rem;
-        
       }
     }
 
@@ -91,7 +88,7 @@
       justify-content: center;
       align-items: center;
 
-      .viento-icono {        
+      .viento-icono {
         font-size: 2rem;
         margin-right: 1.1rem;
         color: var(--azul);
@@ -101,9 +98,7 @@
         display: flex;
         flex-direction: column;
         font-size: 1.2rem;
-        
       }
     }
-  }  
+  }
 }
-

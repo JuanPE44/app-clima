@@ -1,55 +1,49 @@
-
-.card-prediccion {  
+.card-prediccion {
   grid-area: p;
-  width: 100%; 
+  width: 100%;
   display: flex;
   justify-content: center;
-  align-items:center;
+  align-items: center;
   background: var(--blanco);
-  min-height: 200px;
 
   .contenedor-predicciones {
-    display: flex;  
-    justify-content: flex-start;
+    position: relative;
+    display: flex;
+    justify-content: center;
     overflow: hidden;
-    overflow-x: scroll;
-    transform: scale(0);
-    opacity: 0;
-    animation: 1s fadeIn forwards;   
-    padding:2rem 1rem;
-    margin: 2rem;
+    padding: 2rem 3rem 1rem 3rem;
+    margin: 2rem 1rem;
 
-    /* Elemento base */
-    &::-webkit-scrollbar {
-      height: .6rem;
-      
-    }
-
-    /* Carril */
-    &::-webkit-scrollbar-track {
+    .control-prev {
+      display: flex;
+      align-items: center;
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      cursor: pointer;
+      padding: 1rem;
       background: var(--blanco);
-      border-radius: var(--border-radius);
-      margin: 1rem;
-    }
-    /* Manejador */
-    &::-webkit-scrollbar-thumb {
-      background: var(--azul);
-      border-radius: 50px;
+      .prev-icono {
+        font-size: 1.3rem;
+        color: var(--azul);
+      }
     }
 
-    /* Manejador hover */
-    &::-webkit-scrollbar-thumb:hover {
-      background: var(--celeste);
+    .control-next {
+      display: flex;
+      align-items: center;
+      position: absolute;
+      right: 0;
+      top: 0;
+      height: 100%;
+      padding: 1rem;
+      cursor: pointer;
+      background: var(--blanco);
+      .next-icono {
+        font-size: 1.3rem;
+        color: var(--azul);
+      }
     }
   }
 }
-
-
-
-@keyframes fadeIn {
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
