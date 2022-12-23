@@ -38,9 +38,10 @@ export default function CardPredriccion({ infoPrediccion, error, cambiarDia }) {
       <ul className='contenedor-predicciones'>
         {
           error ? <h5>Predicciones no encontradas :'/</h5> : (
-            mostrarPrediccion.map((dia) => {
+            mostrarPrediccion.map((dia,index) => {
               let img = dia.horas[0].weather[0].main;
-              const [tempMax, tempMin] = obtenerTemperaturas(dia.horas)
+              const [tempMax, tempMin] = obtenerTemperaturas(dia.horas)              
+              
               return (
                 <Prediccion
                   cambiarDia={cambiarDia}
