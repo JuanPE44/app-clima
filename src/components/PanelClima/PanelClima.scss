@@ -22,11 +22,10 @@
 @media (max-width: 450px) {
   .panel-clima {
     transform: scale(.8);
-    width: 100%;
-    grid-template-areas:  "f"
-                          "c"
-                          "p"
-                          "h";
+    //grid-template-areas:  "f"
+    //                      "c"
+    //                      "p"
+    //                      "h";
   }
 }
 
