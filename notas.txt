@@ -1,0 +1,8 @@
+
+{
+  /*
+  <CardHoras 
+    diaHoras={clima.horas}
+  />
+  */
+}  

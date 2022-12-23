@@ -1,6 +1,5 @@
 
 import PanelClima from './components/PanelClima/PanelClima';
-import { Route } from 'wouter';
 
 function App() {
   return (

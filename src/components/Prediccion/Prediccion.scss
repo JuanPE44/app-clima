@@ -1,51 +1,53 @@
-
-
 .prediccion {
-  min-width: 12rem;
-  height: 12rem;
+  min-width: 11rem;
+  height: 11rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;  
+  justify-content: space-evenly;
   align-items: center;
   border-radius: var(--border-radius);
-  margin: 1rem;
-  padding-bottom: 1rem;
-  background: #1952771a;
+  margin: 0.5rem;
   opacity: 0;
-  transform: scale(0);
-  animation: 1s fadeIn forwards; 
+  animation: 1s prediccionFadeIn forwards;
   color: var(--azul);
+  border: 1px solid #1951771c;
+  transition: 0.2s;
+  cursor: pointer;
+
+  &:hover {
+    background: #195177;
+    color: var(--blanco);
+  }
 
   .header-prediccion {
     display: flex;
     align-items: center;
     flex-direction: column;
     justify-content: center;
-    margin-bottom: .5rem;
-
+    margin-bottom: 0.5rem;
 
     img {
       width: 3rem;
       height: 3rem;
-      margin-left: .5rem;
+      margin-left: 0.5rem;
     }
 
     .prediccion-dia {
-      font-size: 1.8rem;
-      color: var(--gris-claro);
+      font-size: 1.7rem;
+      //color: var(--gris-claro);
       font-weight: bold;
     }
   }
   .prediccion-temperatura {
     display: flex;
-    gap: .8rem;
+    gap: 0.8rem;
     font-weight: 600;
     font-size: 1.5rem;
-    
+
     .tempMin {
       position: relative;
       &::before {
-        content: 'º';
+        content: "º";
         position: absolute;
         top: -2px;
         right: -5px;
@@ -55,9 +57,9 @@
 
     .tempMax {
       position: relative;
-      color: var(--gris-claro);
+      //color: var(--gris-claro);
       &::before {
-        content: 'º';
+        content: "º";
         position: absolute;
         top: -2px;
         right: -5px;
@@ -67,9 +69,8 @@
   }
 }
 
-@keyframes fadeIn {
+@keyframes prediccionFadeIn {
   to {
-    transform: scale(1);
     opacity: 1;
   }
 }

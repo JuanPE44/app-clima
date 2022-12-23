@@ -1,18 +1,37 @@
 
 .panel-clima { 
-  width: var(--panel-largo);
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
-  align-items: center;
+  //grid-template-areas:  "f"
+  //                      "c"
+  //                      "p";      
   overflow: hidden;
   background: var(--blanco);
   border-radius: var(--border-radius);
+
+  .info-panel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 0px;
+    animation: 1s climaFadeIn forwards;  
+  }
 }
 
 @media (max-width: 450px) {
   .panel-clima {
     transform: scale(.8);
     width: 100%;
+    grid-template-areas:  "f"
+                          "c"
+                          "p"
+                          "h";
+  }
+}
+
+@keyframes climaFadeIn {
+  to {
+    height: 600px;
   }
 }
