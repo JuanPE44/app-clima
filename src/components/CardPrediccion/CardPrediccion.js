@@ -1,14 +1,22 @@
-
 import './CardPrediccion.scss';
 import Prediccion from '../Prediccion/Prediccion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons'
 import { useEffect, useState } from 'react';
 
-const DIAS = ['Domingo','Lunes','Martes','Miercoles','Jueves','Viernes','Sabado'];
+export default function CardPredriccion({ infoPrediccion, error, cambiarDia }) {
 
-export default function CardPredriccion ({ prediccion, cargando, error }) {
-  const [dias, setDias] = useState([]);
+  const [predicciones, setPredicciones] = useState({ actualesDias: [], proximosDias: [] })
+  const { actualesDias, proximosDias } = predicciones;
+  const [estadoBoton, setEstadoBoton] = useState(true);
+  const visibilityPrev = {
+    visibility: estadoBoton ? 'hidden' : 'visible'
+  };
+  const visibilityNext = {
+    visibility: !estadoBoton ? 'hidden' : 'visible'
+  };
+
+  let mostrarPrediccion = estadoBoton ? actualesDias : proximosDias;
 
 
   const obtenerTemperaturas = (dia) => {
