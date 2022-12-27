@@ -1,14 +1,44 @@
 
 .panel-clima { 
+  position: relative;
   display: flex;
   flex-direction: column;
   min-width: 440px;
   //grid-template-areas:  "f"
   //                      "c"
   //                      "p";      
-  overflow: hidden;
   background: var(--blanco);
   border-radius: var(--border-radius);
+  
+
+  .ver-mas {
+    width: 4rem;
+    height: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    right: -1.7rem;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    background: #dde2e6;
+    border-radius: var(--border-radius);
+    z-index: 100;
+    transition: .3s;
+
+    &:hover {
+      background: var(--celeste);
+      .icono-verMas {
+        color: var(--blanco);
+      }
+    }
+    
+    .icono-verMas {            
+      font-size: 2rem;
+      color: var(--azul);      
+    } 
+  }
 
   .info-panel {
     display: flex;
@@ -17,6 +47,8 @@
     flex-direction: column;
     height: 0px;
     animation: 1s climaFadeIn forwards;  
+    overflow: hidden;
+    border-radius: var(--border-radius);
   }
 }
 

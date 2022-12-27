@@ -7,6 +7,8 @@
   background: var(--blanco);
   padding: 2rem 2.5rem;
   gap: .9rem;
+  overflow: hidden;
+  border-radius: var(--border-radius);
 
   .form-icono {
     flex-grow: 0;

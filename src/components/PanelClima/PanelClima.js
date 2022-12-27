@@ -9,12 +9,15 @@ import CardClima from '../CardClima/CardClima'
 import CardPredriccion from '../CardPrediccion/CardPrediccion';
 import { useLocation } from 'wouter';
 import CardHoras from '../CardHoras/CardHoras';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
 
 const DIAS = ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'];
 
 export default function PanelClima() {
 
   const [clima, setClima] = useState([]);
+  const [dia, setDia] = useState([]);
   const [prediccion, setPrediccion] = useState([]);
   const [mostrar, setMostrar] = useState(false);
   const [error, setError] = useState(false);
@@ -48,9 +51,7 @@ export default function PanelClima() {
     getPrediccion(loc)
       .then(dataPrediccion => {
         setCargando(false)
-        console.log(dataPrediccion.list)
         setPrediccion(separarDias(dataPrediccion.list))
-        setClima(separarDias(dataPrediccion.list)[0]);
         setError(false)
       })
       .catch(error => {
@@ -61,34 +62,47 @@ export default function PanelClima() {
 
       getClima(loc)
       .then(data => {
-        console.log(data)
+        setClima(data);
       })
       
   }
 
   const cambiardia = (dia) => {
-    setClima(dia)
+    setDia(dia)
   }
+
+  const diaActual = () => {
+    const date = new Date();
+    let diaActual = date.getDay()
+    return DIAS[diaActual]
+  }
+
+  
 
   return (
     <div className="panel-clima">
+      
       <Form
         newLocalizacion={getInfo}
       />
       {
         !mostrar ? '' : (
+          <>
+          <button className='ver-mas'>
+            <FontAwesomeIcon icon={faChevronRight} className='icono-verMas'/>
+          </button>
           <div className='info-panel'>
             {
               cargando ? <Spinner /> : (
                 <>
                   <CardClima
                     error={error}
-                    dia={prediccion[0].dia}
-                    img={prediccion[0].horas[0].weather[0].main}
-                    temp={prediccion[0].horas[0].main.temp}
-                    imgDescripcion={prediccion[0].horas[0].weather[0].description}
-                    humedad={prediccion[0].horas[0].main.humidity}
-                    viento={prediccion[0].horas[0].wind.speed}
+                    dia={diaActual()}
+                    img={clima.weather[0].main}
+                    temp={clima.main.temp}
+                    imgDescripcion={clima.weather[0].description}
+                    humedad={clima.main.humidity}
+                    viento={clima.wind.speed}
                   />
                   <CardPredriccion
                     cambiarDia={cambiardia}
@@ -99,6 +113,7 @@ export default function PanelClima() {
               )
             }
           </div>
+          </>
         )
       }
     </div>
