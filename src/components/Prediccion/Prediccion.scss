@@ -34,7 +34,6 @@
 
     .prediccion-dia {
       font-size: 1.7rem;
-      //color: var(--gris-claro);
       font-weight: bold;
     }
   }
@@ -57,7 +56,6 @@
 
     .tempMax {
       position: relative;
-      //color: var(--gris-claro);
       &::before {
         content: "º";
         position: absolute;
@@ -67,6 +65,11 @@
       }
     }
   }
+}
+
+.seleccionado {
+  background: #195177;
+  color: var(--blanco);
 }
 
 @keyframes prediccionFadeIn {

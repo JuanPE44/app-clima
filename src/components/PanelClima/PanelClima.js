@@ -1,71 +1,25 @@
 
 import './PanelClima.scss';
-import React, { useState } from "react";
-import getPrediccion from "../../services/getPrediccion";
-import getClima from "../../services/getClima";
+import React, { useEffect, useState } from "react";
 import Spinner from '../Spinner/Spinner';
 import Form from '../Form/Form';
 import CardClima from '../CardClima/CardClima'
 import CardPredriccion from '../CardPrediccion/CardPrediccion';
-import { useLocation } from 'wouter';
 import CardHoras from '../CardHoras/CardHoras';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
+import { faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
+import { useInfo } from '../../hooks/useInfo';
+import Error from '../Error/Error';
+
 
 const DIAS = ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'];
 
 export default function PanelClima() {
 
-  const [clima, setClima] = useState([]);
   const [dia, setDia] = useState([]);
-  const [prediccion, setPrediccion] = useState([]);
-  const [mostrar, setMostrar] = useState(false);
-  const [error, setError] = useState(false);
-  const [path, pushLocation] = useLocation();
-  const [cargando, setCargando] = useState([])
-
-  const separarDias = (arrayDias) => {
-    let diasSeparados = [];
-    let horas = [];
-    let indexDia;
-    arrayDias.forEach((d, index) => {
-      let date = new Date(d.dt_txt);
-      if (index === 0) { indexDia = date.getDay(date) }
-      if (indexDia !== date.getDay(date)) {
-        diasSeparados.push({ dia: DIAS[indexDia], horas })
-        indexDia = date.getDay(date);
-        horas = [];
-      }
-      horas.push(d);
-      if (index === 39) { diasSeparados.push({ dia: DIAS[indexDia], horas }) }
-    })
-    return diasSeparados;
-  }
-
-  const getInfo = async (loc) => {
-    pushLocation(`/${loc}`)
-    console.log(path)
-    setCargando(true);
-    setMostrar(true)
-
-    getPrediccion(loc)
-      .then(dataPrediccion => {
-        setCargando(false)
-        setPrediccion(separarDias(dataPrediccion.list))
-        setError(false)
-      })
-      .catch(error => {
-        setCargando(false);
-        setError(true)
-      });
-
-
-      getClima(loc)
-      .then(data => {
-        setClima(data);
-      })
-      
-  }
+  const [loc, setLoc] = useState('');
+  const [mostrarHoras, setMostrarHoras] = useState(false);
+  const { clima = [], prediccion = [], mostrar, cargando, error = false } = useInfo(loc)
 
   const cambiardia = (dia) => {
     setDia(dia)
@@ -77,42 +31,60 @@ export default function PanelClima() {
     return DIAS[diaActual]
   }
 
-  
+  useEffect(() =>{
+    setDia(prediccion[0])
+  },[prediccion])
+
 
   return (
     <div className="panel-clima">
       
       <Form
-        newLocalizacion={getInfo}
+        newLocalizacion={setLoc}
       />
       {
         !mostrar ? '' : (
           <>
-          <button className='ver-mas'>
-            <FontAwesomeIcon icon={faChevronRight} className='icono-verMas'/>
+          <button className='ver-mas' onClick={() => setMostrarHoras(h => !h)}>
+            {
+              !mostrarHoras ? <FontAwesomeIcon icon={faChevronRight} className='icono-verMas'/> : <FontAwesomeIcon icon={faChevronLeft} className='icono-verMas'/> 
+            }
           </button>
           <div className='info-panel'>
             {
               cargando ? <Spinner /> : (
                 <>
-                  <CardClima
-                    error={error}
-                    dia={diaActual()}
-                    img={clima.weather[0].main}
-                    temp={clima.main.temp}
-                    imgDescripcion={clima.weather[0].description}
-                    humedad={clima.main.humidity}
-                    viento={clima.wind.speed}
-                  />
-                  <CardPredriccion
-                    cambiarDia={cambiardia}
-                    infoPrediccion={prediccion}
-                    error={error}
-                  />
+                {
+                  error
+                  ? <Error errorInfo={error} />
+                  : <>
+                    <CardClima
+                      dia={diaActual()}
+                      img={clima.weather[0].main}
+                      temp={clima.main.temp }
+                      imgDescripcion={clima.weather[0].description}
+                      humedad={clima.main.humidity}
+                      viento={clima.wind.speed}
+                    />
+                    <CardPredriccion
+                      diaSeleccionado={dia}
+                      cambiarDia={cambiardia}
+                      infoPrediccion={prediccion}
+                    />                    
+                    </>
+                }                                                                                                      
                 </>
               )
             }
           </div>
+          {                   
+            !mostrarHoras ? '' : (
+              <CardHoras 
+                dia={dia.dia}
+                diaHoras={dia.horas}               
+              />
+            )
+          }
           </>
         )
       }

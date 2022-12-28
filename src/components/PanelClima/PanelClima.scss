@@ -1,12 +1,12 @@
 
 .panel-clima { 
   position: relative;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  //flex-direction: column;
   min-width: 440px;
-  //grid-template-areas:  "f"
-  //                      "c"
-  //                      "p";      
+  grid-template-areas:  "f f"
+                        "i h";       
+  grid-template-columns: 440px 1fr;                      
   background: var(--blanco);
   border-radius: var(--border-radius);
   
@@ -20,15 +20,17 @@
     position: absolute;
     right: -1.7rem;
     top: 50%;
-    transform: translateY(-50%);
+    transform: translateY(-50%) scale(0);
     cursor: pointer;
     background: #dde2e6;
     border-radius: var(--border-radius);
     z-index: 100;
+    opacity: 0;
+    animation: 1s verMasFadeIn forwards;
     transition: .3s;
 
     &:hover {
-      background: var(--celeste);
+      background: #195177;
       .icono-verMas {
         color: var(--blanco);
       }
@@ -41,6 +43,8 @@
   }
 
   .info-panel {
+    grid-area: i;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -65,5 +69,12 @@
 @keyframes climaFadeIn {
   to {
     height: 600px;
+  }
+}
+
+@keyframes verMasFadeIn {
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
 }

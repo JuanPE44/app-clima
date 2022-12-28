@@ -1,12 +1,13 @@
 .card-horas {
   grid-area: h;
-  height: 100%;
-  min-height: 450px;
+  height: 100%;  
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 1rem;
+  padding: 0 3.5rem 0 0;
+  overflow: hidden;
+  animation: 1s abrirHorasFadeIn forwards; 
 
   .contenedor-horas {
     width: 100%;
@@ -14,6 +15,47 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
+    overflow: hidden;
   }
 }
+
+
+/*
+.cerrarHoras {
+  animation: 1s cerrarHorasFadeIn forwards;  
+}
+*/
+
+@keyframes abrirHorasFadeIn {
+  0% {
+    width: 0px;
+  }
+  100% {
+    width: 300px;
+  }
+}
+
+@keyframes cerrarHorasFadeIn {
+  0% {
+    width: 300px;
+  } 
+  100% {
+    width: 0px;
+  }
+}
+
+@keyframes cerrarHorasFadeIn {
+  to {
+    width: 0px;
+  }
+}
+
+@keyframes horasFadeIn {
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+

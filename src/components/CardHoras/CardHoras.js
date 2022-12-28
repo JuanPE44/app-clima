@@ -2,10 +2,9 @@
 import Hora from '../Hora/Hora';
 import './CardHoras.scss'
 
-export default function CardHoras({ diaHoras }) {
-  console.log(diaHoras)
+export default function CardHoras({ diaHoras, mostrarHoras }) {
   return (
-    <div className='card-horas'>
+    <div className={`card-horas ${mostrarHoras ? 'abrirHoras' : 'cerrarHoras'}`}>
       <ul className='contenedor-horas'>
         {
           diaHoras.map(diaHora => {
@@ -14,8 +13,11 @@ export default function CardHoras({ diaHoras }) {
               <Hora
                 key={diaHora.dt_txt}
                 hora={hora.slice(0, 5)}
+                fecha={fecha}
                 temp={Math.floor(diaHora.main.temp)}
-                img={diaHora.weather[0].main}
+                img={diaHora.weather[0].main}               
+                viento={diaHora.wind.speed}
+                humedad={diaHora.main.humidity}
               />
             )
           })

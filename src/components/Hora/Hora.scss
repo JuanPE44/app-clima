@@ -1,22 +1,34 @@
 
+@use "sass:math";
 
 .hora {
   width: 100%;
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-start;
+  gap: 2rem;
   align-items: center;
-  padding: 1rem 2rem;
-  margin: .2rem;
+  padding: .7rem 1.2rem;
+  margin: 1rem .5rem;
   color: var(--azul);
-  box-shadow: 0 0 40px #1951770c;
+  // box-shadow: 0 0 40px #1951770c;
   border-radius: var(--border-radius);
-  .divHora {
+  transform: scale(.8);
+  opacity: 0;
+  animation: .2s horasFadeIn forwards;  
+  border: 1px solid #1951771c;
 
+  @for $i from 1 through 8 {
+    $s: s;
+    $delay: math.div($i, 10)+$s;
+    &:nth-child(#{$i}) {
+      animation-delay: $delay;
+    }
   }
 
   .hora-temp {
     position: relative;
     font-weight: bold;
+    font-size: 2rem;
 
     &::before {
       content: '°C';
@@ -31,5 +43,29 @@
   img {
     width: 3rem;
     height: 3rem;
+  }
+
+  .algo {
+    display: flex;
+    flex-direction: column;
+    padding-left: 1rem;
+    .hora-viento , .hora-humedad {
+      display: flex;    
+      align-items: center;
+      gap: .5rem;
+      font-size: 1.3rem;
+
+      div {
+      color: var(--gris-claro);
+
+      }
+    }  
+  }
+}
+
+@keyframes horasFadeIn {
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
 }

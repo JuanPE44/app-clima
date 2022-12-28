@@ -1,10 +1,11 @@
 
 import './Prediccion.scss';
 
-export default function Prediccion ( { img, tempMax, tempMin, dia, cambiarDia, arrayDia }) {
-
+export default function Prediccion ( { img, tempMax, tempMin, dia, cambiarDia, arrayDia, diaSeleccionado }) {
   return (
-    <li className='prediccion' onClick={()=> cambiarDia(arrayDia)}>
+    <li className={`prediccion ${dia === diaSeleccionado.dia ? 'seleccionado' : ''}`} onClick={()=> {
+      cambiarDia(arrayDia)      
+    }}>
       <div className='header-prediccion'>
         <div className='prediccion-dia'>{dia}</div>     
         {       
@@ -12,8 +13,16 @@ export default function Prediccion ( { img, tempMax, tempMin, dia, cambiarDia, a
         }
       </div>   
       <div className='prediccion-temperatura'>
-        <div className='tempMax'>{tempMax}</div>    
-        <div className='tempMin'>{tempMin}</div>            
+        {
+          tempMax===tempMin  ? (
+            <div className='tempMax'>{tempMax}</div>    
+          ) : (
+            <>
+            <div className='tempMax'>{tempMax}</div>    
+            <div className='tempMin'>{tempMin}</div>    
+            </> 
+          )
+        }
       </div> 
     </li>
   );

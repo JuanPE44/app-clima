@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons'
 import { useEffect, useState } from 'react';
 
-export default function CardPredriccion({ infoPrediccion, error, cambiarDia }) {
+export default function CardPredriccion({ infoPrediccion, cambiarDia, diaSeleccionado }) {
 
   const [predicciones, setPredicciones] = useState({ actualesDias: [], proximosDias: [] })
   const { actualesDias, proximosDias } = predicciones;
@@ -14,8 +14,7 @@ export default function CardPredriccion({ infoPrediccion, error, cambiarDia }) {
   };
   const visibilityNext = {
     visibility: !estadoBoton ? 'hidden' : 'visible'
-  };
-
+  };  
   let mostrarPrediccion = estadoBoton ? actualesDias : proximosDias;
 
 
@@ -35,26 +34,27 @@ export default function CardPredriccion({ infoPrediccion, error, cambiarDia }) {
 
   return (
     <div className='card-prediccion'>
+      {/*<h5 className='prediccion-titulo'>PREDICCIONES</h5>*/}
       <ul className='contenedor-predicciones'>
         {
-          error ? <h5>Predicciones no encontradas :'/</h5> : (
-            mostrarPrediccion.map((dia,index) => {
-              let img = dia.horas[0].weather[0].main;
-              const [tempMax, tempMin] = obtenerTemperaturas(dia.horas)              
-              
-              return (
-                <Prediccion
-                  cambiarDia={cambiarDia}
-                  arrayDia={dia}
-                  key={dia.dia}
-                  dia={dia.dia}
-                  img={img}
-                  tempMax={tempMax}
-                  tempMin={tempMin}
-                />
-              )
-            })
+        mostrarPrediccion.map((dia, index) => {
+          let img = dia.horas[0].weather[0].main;
+          const [tempMax, tempMin] = obtenerTemperaturas(dia.horas)              
+          
+          return (
+            <Prediccion
+              index={index}
+              diaSeleccionado={diaSeleccionado}
+              cambiarDia={cambiarDia}
+              arrayDia={dia}
+              key={dia.dia}
+              dia={dia.dia}
+              img={img}
+              tempMax={tempMax}
+              tempMin={tempMin}
+            />
           )
+        })
         }
         <span className='control-prev' style={visibilityPrev} onClick={() => setEstadoBoton(e => !e)}>
           <FontAwesomeIcon className='prev-icono' icon={faChevronLeft} />
