@@ -11,7 +11,6 @@ import { faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons
 import { useInfo } from '../../hooks/useInfo';
 import Error from '../Error/Error';
 
-
 const DIAS = ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'];
 
 export default function PanelClima() {
@@ -19,7 +18,7 @@ export default function PanelClima() {
   const [dia, setDia] = useState([]);
   const [loc, setLoc] = useState('');
   const [mostrarHoras, setMostrarHoras] = useState(false);
-  const { clima = [], prediccion = [], mostrar, cargando, error = false } = useInfo(loc)
+  const { clima, prediccion, mostrar, cargando, error } = useInfo(loc)
 
   const cambiardia = (dia) => {
     setDia(dia)
@@ -45,11 +44,16 @@ export default function PanelClima() {
       {
         !mostrar ? '' : (
           <>
-          <button className='ver-mas' onClick={() => setMostrarHoras(h => !h)}>
-            {
-              !mostrarHoras ? <FontAwesomeIcon icon={faChevronRight} className='icono-verMas'/> : <FontAwesomeIcon icon={faChevronLeft} className='icono-verMas'/> 
-            }
-          </button>
+          {
+            error ? '' : (
+              <button className='ver-mas' onClick={() => setMostrarHoras(h => !h)}>
+                {
+                  !mostrarHoras ? <FontAwesomeIcon icon={faChevronRight} className='icono-verMas'/> : <FontAwesomeIcon icon={faChevronLeft} className='icono-verMas'/> 
+                }
+              </button>
+            )
+          }
+          
           <div className='info-panel'>
             {
               cargando ? <Spinner /> : (
