@@ -48,7 +48,7 @@ export default function PanelClima() {
                   }
                 } >
                 {
-                  !mostrarHoras ? <FontAwesomeIcon icon={faChevronRight} className='icono-verMas'/> : <FontAwesomeIcon icon={faChevronLeft} className='icono-verMas'/> 
+                  mostrarHoras ? <FontAwesomeIcon icon={faChevronRight} className='icono-verMas'/> : <FontAwesomeIcon icon={faChevronLeft} className='icono-verMas'/> 
                 }
               </button>
             )
