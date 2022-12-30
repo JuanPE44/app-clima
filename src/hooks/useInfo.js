@@ -24,6 +24,7 @@ export function useInfo ( loc ) {
     return diasSeparados;
   }
 
+  const [dia, setDia] = useState({dia: 'nose', horas:[]});  
   const [clima, setClima] = useState([]);
   const [prediccion, setPrediccion] = useState([]);
   const [mostrar, setMostrar] = useState(false);
@@ -39,6 +40,7 @@ export function useInfo ( loc ) {
       .then(dataPrediccion => {
         setCargando(false)
         setPrediccion(separarDias(dataPrediccion.list))
+        setDia(separarDias(dataPrediccion.list)[0])
         setError(false)
       })
       .catch(error => {
@@ -57,5 +59,5 @@ export function useInfo ( loc ) {
         setError(true)
       });    
   }, [loc])
-  return { clima, prediccion, mostrar, cargando, error }
+  return { clima, prediccion, mostrar, cargando, error, dia, setDia }
 }

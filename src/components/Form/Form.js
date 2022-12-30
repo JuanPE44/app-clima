@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationDot, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 
-export default function Form({ newLocalizacion }) {
+export default function Form({ newLocalizacion, setClaseAnimacion }) {
 
   const [ciudad, setCiudad] = useState('');
 
@@ -12,6 +12,7 @@ export default function Form({ newLocalizacion }) {
     e.preventDefault();
     if (ciudad === '' || !ciudad) return;
     newLocalizacion(ciudad);
+    setClaseAnimacion('');
   }
 
   return (

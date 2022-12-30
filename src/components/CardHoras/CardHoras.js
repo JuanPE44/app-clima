@@ -2,9 +2,9 @@
 import Hora from '../Hora/Hora';
 import './CardHoras.scss'
 
-export default function CardHoras({ diaHoras, mostrarHoras }) {
+export default function CardHoras({ diaHoras, mostrarHoras, claseAnimacion }) {
   return (
-    <div className={`card-horas ${mostrarHoras ? 'abrirHoras' : 'cerrarHoras'}`}>
+    <div className={`card-horas ${claseAnimacion}`}>
       <ul className='contenedor-horas'>
         {
           diaHoras.map(diaHora => {

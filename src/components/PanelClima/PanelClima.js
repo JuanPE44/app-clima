@@ -1,6 +1,6 @@
 
 import './PanelClima.scss';
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Spinner from '../Spinner/Spinner';
 import Form from '../Form/Form';
 import CardClima from '../CardClima/CardClima'
@@ -15,10 +15,10 @@ const DIAS = ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'S
 
 export default function PanelClima() {
 
-  const [dia, setDia] = useState([]);
   const [loc, setLoc] = useState('');
-  const [mostrarHoras, setMostrarHoras] = useState(false);
-  const { clima, prediccion, mostrar, cargando, error } = useInfo(loc)
+  const [mostrarHoras, setMostrarHoras] = useState(true);
+  const { clima, prediccion, mostrar, cargando, error, dia, setDia } = useInfo(loc)
+  const [claseAnimacion, setClaseAnimacion] = useState('');
 
   const cambiardia = (dia) => {
     setDia(dia)
@@ -29,24 +29,24 @@ export default function PanelClima() {
     let diaActual = date.getDay()
     return DIAS[diaActual]
   }
-
-  useEffect(() =>{
-    setDia(prediccion[0])
-  },[prediccion])
-
-
+  
   return (
     <div className="panel-clima">
       
       <Form
         newLocalizacion={setLoc}
+        setClaseAnimacion={setClaseAnimacion}
       />
       {
         !mostrar ? '' : (
           <>
           {
             error ? '' : (
-              <button className='ver-mas' onClick={() => setMostrarHoras(h => !h)}>
+              <button className='ver-mas' onClick={() => {
+                    setMostrarHoras(h => !h);
+                    setClaseAnimacion(mostrarHoras ? 'abrirHoras' : 'cerrarHoras');
+                  }
+                } >
                 {
                   !mostrarHoras ? <FontAwesomeIcon icon={faChevronRight} className='icono-verMas'/> : <FontAwesomeIcon icon={faChevronLeft} className='icono-verMas'/> 
                 }
@@ -81,14 +81,15 @@ export default function PanelClima() {
               )
             }
           </div>
-          {                   
-            !mostrarHoras ? '' : (
+            { 
+              cargando ? '' :
               <CardHoras 
                 dia={dia.dia}
-                diaHoras={dia.horas}               
+                diaHoras={dia.horas}    
+                mostrarHoras={mostrarHoras}    
+                claseAnimacion={claseAnimacion}       
               />
-            )
-          }
+            }                          
           </>
         )
       }

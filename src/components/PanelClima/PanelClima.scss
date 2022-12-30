@@ -12,12 +12,12 @@
   
 
   .ver-mas {
+    position: absolute;
     width: 4rem;
     height: 4rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    position: absolute;
     right: -1.7rem;
     top: 50%;
     transform: translateY(-50%) scale(0);
@@ -56,13 +56,28 @@
   }
 }
 
+@media (max-width: 780px) {
+  .panel-clima {
+    position: relative;    
+    grid-template-areas:  "f"
+                          "i"
+                          "h"; 
+    transform: scale(.9);
+
+    .ver-mas {
+      right: calc(50% - 2rem);          
+      top: calc(100% - 1.7rem);
+      transform: translateX(50%);
+      .icono-verMas {
+        transform: rotate(-90deg);
+      }
+    }
+  }
+}
+
 @media (max-width: 450px) {
   .panel-clima {
     transform: scale(.8);
-    //grid-template-areas:  "f"
-    //                      "c"
-    //                      "p"
-    //                      "h";
   }
 }
 

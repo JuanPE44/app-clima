@@ -69,3 +69,9 @@
     transform: scale(1);
   }
 }
+
+@media (max-width: 780px) {
+  .hora {
+    justify-content: center;
+  }
+}
