@@ -1,13 +1,13 @@
 .card-horas {
   grid-area: h;
-  height: 100%; 
-  width: 0; 
+  height: 100%;
+  width: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  transition: 1s;  
+  transition: 1s;
 
   .contenedor-horas {
     width: 100%;
@@ -21,37 +21,32 @@
 }
 
 .abrirHoras {
-  animation: .6s abrirHorasFadeIn forwards; 
+  animation: 0.6s abrirHorasFadeIn forwards;
 }
 
 .cerrarHoras {
-  animation: .4s cerrarHorasFadeIn forwards; 
+  animation: 0.4s cerrarHorasFadeIn forwards;
 }
-
 
 @keyframes abrirHorasFadeIn {
   0% {
     width: 0px;
     padding-right: 0;
-
   }
   100% {
     width: 300px;
     padding-right: 3.5rem;
-
   }
 }
 
 @keyframes cerrarHorasFadeIn {
   0% {
-    width: 300px;   
+    width: 300px;
     padding-right: 3.5rem;
-
   }
   100% {
     width: 0px;
     padding-right: 0;
-
   }
 }
 
@@ -76,20 +71,19 @@
     0% {
       height: 0px;
       padding-right: 0;
-  
     }
     100% {
-      height: 620px;  
+      height: 620px;
     }
   }
 
   @keyframes cerrarHorasFadeIn {
     0% {
-      height: 620px;     
+      height: 620px;
     }
     100% {
       height: 0px;
-      padding-right: 0;  
+      padding-right: 0;
     }
   }
 }

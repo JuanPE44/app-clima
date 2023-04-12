@@ -1,15 +1,14 @@
-
-.panel-clima { 
+.panel-clima {
   position: relative;
   display: grid;
   //flex-direction: column;
   min-width: 440px;
-  grid-template-areas:  "f f"
-                        "i h";       
-  grid-template-columns: 440px 1fr;                      
+  grid-template-areas:
+    "f f"
+    "i h";
+  grid-template-columns: 440px 1fr;
   background: var(--blanco);
   border-radius: var(--border-radius);
-  
 
   .ver-mas {
     position: absolute;
@@ -27,7 +26,7 @@
     z-index: 100;
     opacity: 0;
     animation: 1s verMasFadeIn forwards;
-    transition: .3s;
+    transition: 0.3s;
 
     &:hover {
       background: #195177;
@@ -35,11 +34,11 @@
         color: var(--blanco);
       }
     }
-    
-    .icono-verMas {            
+
+    .icono-verMas {
       font-size: 2rem;
-      color: var(--azul);      
-    } 
+      color: var(--azul);
+    }
   }
 
   .info-panel {
@@ -50,7 +49,7 @@
     align-items: center;
     flex-direction: column;
     height: 0px;
-    animation: 1s climaFadeIn forwards;  
+    animation: 1s climaFadeIn forwards;
     overflow: hidden;
     border-radius: var(--border-radius);
   }
@@ -58,14 +57,15 @@
 
 @media (max-width: 780px) {
   .panel-clima {
-    position: relative;    
-    grid-template-areas:  "f"
-                          "i"
-                          "h"; 
-    transform: scale(.9);
+    position: relative;
+    grid-template-areas:
+      "f"
+      "i"
+      "h";
+    transform: scale(0.9);
 
     .ver-mas {
-      right: calc(50% - 2rem);          
+      right: calc(50% - 2rem);
       top: calc(100% - 1.7rem);
       transform: translateX(50%);
       .icono-verMas {
@@ -77,7 +77,7 @@
 
 @media (max-width: 450px) {
   .panel-clima {
-    transform: scale(.8);
+    transform: scale(0.8);
   }
 }
 

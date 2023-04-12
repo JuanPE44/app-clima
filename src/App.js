@@ -1,5 +1,4 @@
-
-import PanelClima from './components/PanelClima/PanelClima';
+import PanelClima from "./components/PanelClima/PanelClima";
 
 function App() {
   return (

@@ -1,17 +1,13 @@
-
-
-
-  .loader {
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    background-color: var(--azul);
-    box-shadow: 32px 0 var(--azul), -32px 0 var(--azul);
-    position: relative;
-    transform: scale(.8);
-    animation: flash 0.5s ease-out infinite alternate;
-  }
-
+.loader {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: var(--azul);
+  box-shadow: 32px 0 var(--azul), -32px 0 var(--azul);
+  position: relative;
+  transform: scale(0.8);
+  animation: flash 0.5s ease-out infinite alternate;
+}
 
 @keyframes fadeIn {
   to {
@@ -20,19 +16,17 @@
   }
 }
 
-
 @keyframes flash {
   0% {
-    background-color: #FFF2;
-    box-shadow: 32px 0 #FFF2, -32px 0 var(--azul);
+    background-color: #fff2;
+    box-shadow: 32px 0 #fff2, -32px 0 var(--azul);
   }
   50% {
     background-color: var(--azul);
-    box-shadow: 32px 0 #FFF2, -32px 0 #FFF2;
+    box-shadow: 32px 0 #fff2, -32px 0 #fff2;
   }
   100% {
-    background-color: #FFF2;
-    box-shadow: 32px 0 var(--azul), -32px 0 #FFF2;
+    background-color: #fff2;
+    box-shadow: 32px 0 var(--azul), -32px 0 #fff2;
   }
 }
-  

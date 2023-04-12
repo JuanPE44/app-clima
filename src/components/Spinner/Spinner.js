@@ -1,8 +1,5 @@
+import "./Spinner.scss";
 
-import './Spinner.scss';
-
-export default function Spinner () {
-  return (  
-    <span className="loader"></span>
-  )
+export default function Spinner() {
+  return <span className="loader"></span>;
 }

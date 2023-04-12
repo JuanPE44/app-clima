@@ -1,10 +1,9 @@
-
 .clima-error {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 3rem;
-  animation: .5s ErrorfadeIn forwards; 
+  animation: 0.5s ErrorfadeIn forwards;
   transform: scale(0);
   opacity: 0;
   img {
@@ -12,7 +11,7 @@
     height: 150px;
     object-fit: cover;
   }
-  
+
   h5 {
     margin-top: 2rem;
     color: var(--azul);
