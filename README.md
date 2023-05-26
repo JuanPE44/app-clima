@@ -1,6 +1,6 @@
 # App-clima
 
-Esta es una aplicación del clima desarrollada utilizando React, Sass y la API WeatherAPI. La app permite a los usuarios obtener información meteorológica actualizada para diferentes ubicaciones.
+Esta es una aplicación del clima desarrollada utilizando React, Sass y la API de OpenWhather. La app permite a los usuarios obtener información meteorológica actualizada para diferentes ubicaciones.
 
 ## Demostración
 
