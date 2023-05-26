@@ -1,7 +1,7 @@
 import getPrediccion from "../services/getPrediccion";
 import getClima from "../services/getClima";
 import { useEffect, useState } from "react";
-import { separarDias } from "../utils/separarDias";
+import { separarDias } from "../utilities/separarDias";
 
 export function useInfo(loc) {
   const [dia, setDia] = useState({ dia: "nose", horas: [] });
